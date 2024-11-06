@@ -1,10 +1,5 @@
 
 package encryption2.encryptionapp;
-
-/**
- *
- * @author nguye
- */
 public class RC4 {
     public String handleEncryptncryptRC(String plainText , String key) {
         if(checkInput(plainText, key))
@@ -96,11 +91,11 @@ public class RC4 {
         try {
             Integer.parseInt(plainText);
             Integer.parseInt(key);
-            if(plainText.toCharArray().length/9 ==0)
+            if(plainText.toCharArray().length/9 !=0 || plainText.toCharArray().length < 8)
             {
-                return true;
+                return false;
             }
-                return false ;
+                return true ;
         } catch (Exception e) {
             return false;
         }

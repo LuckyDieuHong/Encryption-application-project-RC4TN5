@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package encryption2.encryptionapp;
 
 import javax.swing.JOptionPane;
@@ -11,11 +8,14 @@ import javax.swing.JOptionPane;
  * @author nguye
  */
 public class EncryptionApp extends javax.swing.JFrame {
+    //Khoi tao 2 bien tu 2 class ma hoa
     private RC4 encrRC = new RC4();
+    private TNA5 encrTN = new TNA5();
     /**
      * Creates new form NewJFrame
      */
     public EncryptionApp() {
+        //Khoi tao cac phan tu trong gia dien nhu button, label,...
         initComponents();
     }
 
@@ -34,16 +34,19 @@ public class EncryptionApp extends javax.swing.JFrame {
         txtKey = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPlaintext = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        btnRC4 = new javax.swing.JButton();
         txtResult = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnTNA5 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Encrytion Tiny A5 - RC4");
         setName("Title"); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel1.setText("Plaintext");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel2.setText("Key");
 
         txtKey.setColumns(20);
@@ -54,84 +57,115 @@ public class EncryptionApp extends javax.swing.JFrame {
         txtPlaintext.setRows(5);
         jScrollPane2.setViewportView(txtPlaintext);
 
-        jButton1.setText("Encryption");
-        jButton1.setActionCommand("btnECR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRC4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnRC4.setText("RC4");
+        btnRC4.setActionCommand("btnECR");
+        btnRC4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRC4ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Tiny A5");
-        jButton2.setActionCommand("btnA");
+        btnTNA5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnTNA5.setText("Tiny A5");
+        btnTNA5.setActionCommand("btnTNA5");
+        btnTNA5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTNA5ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel3.setText("Result");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtResult)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(12, 12, 12)))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(245, Short.MAX_VALUE))
+                        .addComponent(btnRC4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTNA5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel2)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(27, 27, 27)
-                .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                    .addComponent(btnTNA5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRC4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(51, 51, 51))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    //Ham tuong tac khi nhan nut RC4
+    private void btnRC4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRC4ActionPerformed
+        //Lay du lieu tu plaintext va key trong giao dien
         String text = this.txtPlaintext.getText();
         String key = this.txtKey.getText();
+        //Kiem tra input plaintext co nhap dung khong
         if("Your Plainext or your key is wrong".equals(encrRC.handleEncryptncryptRC(text, key)))
         {
-           JOptionPane.showMessageDialog(null, "Hint: Check your box", "InfoBox: " + "bruh", JOptionPane.INFORMATION_MESSAGE);
+           //Hien thi thi box thong bao neu dau vao sai
+           JOptionPane.showMessageDialog(null, "Hint: Check your Plaintext", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         else
         {
+            //Hien thi ket qua trong text box ket qua
             this.txtResult.setText(encrRC.handleEncryptncryptRC(text, key));
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRC4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnTNA5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTNA5ActionPerformed
+        //Lay du lieu tu plaintext va key trong giao dien
+        String text = this.txtPlaintext.getText();
+        //Kiem tra input plaintext co nhap dung khong
+        if("Your Plainext or your key is wrong".equals(encrTN.MaHoatinya5(text)))
+        {
+           //Hien thi thi box thong bao neu dau vao sai
+           JOptionPane.showMessageDialog(null, "Hint: Check your Plaintext", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            //Hien thi ket qua trong text box ket qua
+            this.txtResult.setText(encrTN.MaHoatinya5(text));
+        }
+        
+    }//GEN-LAST:event_btnTNA5ActionPerformed
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -165,10 +199,11 @@ public class EncryptionApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnRC4;
+    private javax.swing.JButton btnTNA5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txtKey;
